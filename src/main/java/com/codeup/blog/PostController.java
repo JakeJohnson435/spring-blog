@@ -14,9 +14,15 @@ import java.util.List;
 @Controller
 public class PostController {
 
+    private final PostService postService;
+
+    public PostController(PostService postService) {
+        this.postService = postService;
+    }
+
     @GetMapping("/posts")
     public String postsIndex(Model model) {
-        List<Post> posts = arrayOfPosts();
+        List<Post> posts = postService.getAllPosts();
         model.addAttribute("posts", posts);
 
         return "/posts/index";
@@ -24,8 +30,7 @@ public class PostController {
 
     @GetMapping("/posts/{id}")
     public String postsId(@PathVariable long id,  Model model) {
-        Post post = new Post("here is my title", "Here is the body");
-        model.addAttribute("post", post);
+        model.addAttribute("post", postService.getPost(id));
         return "/posts/show";
     }
 
@@ -40,10 +45,4 @@ public class PostController {
         return "insert a post";
     }
 
-    private List<Post> arrayOfPosts(){
-        return Arrays.asList(
-        new Post("Title 1", "Body 1"),
-        new Post("Title 2", "Body 2")
-        );
-    }
 }
