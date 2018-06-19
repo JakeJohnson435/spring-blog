@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8" />
     <title>Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 <body>
 
-<h1>Post #${id}</h1>
+<h1>Posts</h1>
+<div th:each="post : ${posts}">
 <h3><span th:text="${post.title}">Title</span></h3>
 <p><span th:text="${post.body}">Body</span></p>
-
+</div>
 
 </body>
 </html>
