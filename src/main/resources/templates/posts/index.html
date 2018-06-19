@@ -1,11 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
+
+<h1>Post #${id}</h1>
+<h3><span th:text="${post.title}">Title</span></h3>
+<p><span th:text="${post.body}">Body</span></p>
+
 
 </body>
 </html>
