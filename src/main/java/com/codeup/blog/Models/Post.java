@@ -35,4 +35,12 @@ public class Post {
     public void setBody(String body) {
         this.body = body;
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id){
+        this.id = id;
+    }
 }

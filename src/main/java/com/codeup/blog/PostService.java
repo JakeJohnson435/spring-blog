@@ -31,4 +31,9 @@ public class PostService {
         posts.add(new Post("Anotha One", "Keep it goin"));
     }
 
+    public void savePost(Post post){
+        post.setId(this.posts.size() -1);
+        this.posts.add(post);
+    }
+
 }

@@ -3,10 +3,7 @@ package com.codeup.blog;
 import com.codeup.blog.Models.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -35,14 +32,15 @@ public class PostController {
     }
 
     @GetMapping("/posts/create")
-    @ResponseBody
-    public String postsCreate() {
-        return "Create a post";
+    public String postsCreate(Model model) {
+        model.addAttribute("newPost", new Post());
+        return "posts/create";
     }
+
     @PostMapping("/posts/create")
-    @ResponseBody
-    public String postsInsert() {
-        return "insert a post";
+    public String postsInsert(@ModelAttribute Post newPost) {
+        postService.savePost(newPost);
+        return "redirect:/posts";
     }
 
 }
