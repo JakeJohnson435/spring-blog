@@ -14,6 +14,9 @@ public class Post{
     @Column(nullable = false, length = 100)
     private String title;
 
+//    @Column(nullable = true)
+//    private String[] subtitle;
+
     @Column(nullable = false)
     private String body;
 
@@ -23,11 +26,14 @@ public class Post{
     public Post(String title, String body) {
         this.title = title;
         this.body = body;
+//        this.subtitle = body.split(".");
     }
+
 
     public Post(String title, String body, long id){
         this.title = title;
         this.body = body;
+//        this.subtitle = body.split(".");
         this.id = id;
     }
 
@@ -54,4 +60,12 @@ public class Post{
     public void setId(long id){
         this.id = id;
     }
+
+//    public String[] getSubtitle() {
+//        return subtitle;
+//    }
+//
+//    public void setSubtitle(String[] subtitle) {
+//        this.subtitle = subtitle;
+//    }
 }
