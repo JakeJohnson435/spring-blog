@@ -1,0 +1,7 @@
+.slide, .slide2, .slide3 {
+    display: none;
+}
+
+.jumbotron {
+    margin-bottom: 0;
+}

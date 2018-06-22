@@ -1,21 +1,21 @@
 package com.codeup.blog;
 
 import com.codeup.blog.Models.Post;
+import com.codeup.blog.Models.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import javax.websocket.server.PathParam;
-import java.util.List;
 
 
 @Controller
 public class PostController {
 
     private final PostRepo postRepo;
+    private final UserRepository userRepo;
 
-    public PostController(PostRepo postRepo) {
+    public PostController(PostRepo postRepo, UserRepository userRepo) {
         this.postRepo = postRepo;
+        this.userRepo = userRepo;
     }
 
     @GetMapping("/posts")
@@ -27,6 +27,7 @@ public class PostController {
     @GetMapping("/posts/{id}")
     public String postsId(@PathVariable long id,  Model model) {
         model.addAttribute("post", postRepo.findOne(id));
+        model.addAttribute("user", userRepo.findOne((long) 1));
         return "/posts/show";
     }
 
@@ -38,6 +39,14 @@ public class PostController {
 
     @PostMapping("/posts/create")
     public String postsInsert(@ModelAttribute Post newPost) {
+        String body = newPost.getBody();
+        if (body.length() > 30) {
+            String subtitle = body.substring(0, 30) + "...";
+            newPost.setSubtitle(subtitle);
+        } else {
+            newPost.setSubtitle(body);
+        }
+        newPost.setOwner(userRepo.findOne((long) 1));
         postRepo.save(newPost);
         return "redirect:/posts";
     }
