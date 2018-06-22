@@ -8,7 +8,7 @@
 <h1>Posts</h1>
 <div th:each="post : ${posts}">
 <h3><span th:text="${post.title}">Title</span></h3>
-<p><span th:text="${post.body}">Body</span></p>
+    <a th:href="@{'/posts/' + ${post.id}}">View post</a>
 </div>
 <div th:replace="partials/footer :: footer"></div>
 

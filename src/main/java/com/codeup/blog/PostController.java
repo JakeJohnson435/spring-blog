@@ -5,29 +5,28 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
-import java.util.List;
+import javax.websocket.server.PathParam;
+
 
 @Controller
 public class PostController {
 
-    private final PostService postService;
+    private final PostRepo postRepo;
 
-    public PostController(PostService postService) {
-        this.postService = postService;
+    public PostController(PostRepo postRepo) {
+        this.postRepo = postRepo;
     }
 
     @GetMapping("/posts")
     public String postsIndex(Model model) {
-        List<Post> posts = postService.getAllPosts();
-        model.addAttribute("posts", posts);
+        model.addAttribute("posts", postRepo.findAll());
 
         return "/posts/index";
     }
 
     @GetMapping("/posts/{id}")
     public String postsId(@PathVariable long id,  Model model) {
-        model.addAttribute("post", postService.getPost(id));
+        model.addAttribute("post", postRepo.findOne(id));
         return "/posts/show";
     }
 
@@ -39,7 +38,26 @@ public class PostController {
 
     @PostMapping("/posts/create")
     public String postsInsert(@ModelAttribute Post newPost) {
-        postService.savePost(newPost);
+        postRepo.save(newPost);
+        return "redirect:/posts";
+    }
+
+    @GetMapping("/posts/{id}/edit")
+    public String edit(@ModelAttribute Post post, @PathVariable long id, Model model){
+        post.setId(id);
+        model.addAttribute("post", postRepo.findOne(id));
+        return "/posts/edit";
+    }
+
+    @PostMapping("/posts/{id}/edit")
+    public String handleEdit(@ModelAttribute Post post){
+        postRepo.save(post);
+        return "redirect:/posts";
+    }
+
+    @PostMapping("/posts/delete")
+    public String deletePost(@ModelAttribute Post post){
+        postRepo.delete(post);
         return "redirect:/posts";
     }
 

@@ -7,13 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class PostService {
+public class PostService{
 
     private List<Post> posts;
+    private PostRepo postRepo;
 
-    public PostService() {
-        this.posts = new ArrayList<>();
-        createPosts();
+
+    public PostService(PostRepo postRepo) {
+        this.postRepo = postRepo;
     }
 
     public List<Post> getAllPosts() {
@@ -24,15 +25,8 @@ public class PostService {
         return posts.get(((int) id) - 1);
     }
 
-    public void createPosts() {
-        posts.add(new Post("Title numero uno", "Description to the first post"));
-        posts.add(new Post("2nd post, I'm on a roll", "Speaking of roll, did you see my game? Check it out on the navbar"));
-        posts.add(new Post("I'm running out of ideas", "I need to buy some dress shoes"));
-        posts.add(new Post("Anotha One", "Keep it goin"));
-    }
-
     public void savePost(Post post){
-        post.setId(this.posts.size() -1);
+        post.setId(this.posts.size()+1);
         this.posts.add(post);
     }
 
