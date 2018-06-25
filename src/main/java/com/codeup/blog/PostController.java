@@ -60,6 +60,13 @@ public class PostController {
 
     @PostMapping("/posts/{id}/edit")
     public String handleEdit(@ModelAttribute Post post){
+        String body = post.getBody();
+        if (body.length() > 30) {
+            String subtitle = body.substring(0, 30) + "...";
+            post.setSubtitle(subtitle);
+        } else {
+            post.setSubtitle(body);
+        }
         postRepo.save(post);
         return "redirect:/posts";
     }
