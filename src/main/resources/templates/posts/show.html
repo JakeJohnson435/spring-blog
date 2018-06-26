@@ -7,13 +7,13 @@
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
         <h1 class="display-4"><span th:text="${post.title}">Title</span></h1>
-        <p>Author: <span th:text="${user.email}"></span></p>
+        <p>Author: <span th:text="${post.owner.email}"></span></p>
     </div>
 </div>
 <div class="container">
     <p><span th:text="${post.body}">Body</span></p>
     <a th:href="@{'/posts/' + ${post.id} + '/edit'}">Edit</a>
-    <form action="/posts/delete" method="post" th:object="${post}">
+    <form th:action="@{/posts/delete}" method="post" th:object="${post}">
         <input type="hidden" th:field="*{id}" />
         <button id="delete">Delete</button>
     </form>

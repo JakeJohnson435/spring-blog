@@ -21,7 +21,8 @@ public class Post{
     @Column(nullable = false)
     private String body;
 
-    @OneToOne(cascade = {CascadeType.ALL})
+    @ManyToOne(cascade = {CascadeType.MERGE})
+    @JoinColumn
     private User owner;
 
     public Post() {

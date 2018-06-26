@@ -5,7 +5,7 @@
 <body>
 <nav th:replace="partials/navbar :: navbar" />
 
-<form action="/posts/create" method="post" th:object="${newPost}">
+<form th:action="@{/posts/create}" method="post" th:object="${newPost}">
     Title:
     <input th:field="*{title}" />
     <br />

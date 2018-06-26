@@ -2,6 +2,7 @@ package com.codeup.blog;
 
 import com.codeup.blog.Models.Post;
 import com.codeup.blog.Models.User;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +28,6 @@ public class PostController {
     @GetMapping("/posts/{id}")
     public String postsId(@PathVariable long id,  Model model) {
         model.addAttribute("post", postRepo.findOne(id));
-        model.addAttribute("user", userRepo.findOne((long) 1));
         return "/posts/show";
     }
 
@@ -46,7 +46,7 @@ public class PostController {
         } else {
             newPost.setSubtitle(body);
         }
-        newPost.setOwner(userRepo.findOne((long) 1));
+        newPost.setOwner((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         postRepo.save(newPost);
         return "redirect:/posts";
     }
