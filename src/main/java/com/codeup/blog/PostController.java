@@ -22,13 +22,13 @@ public class PostController {
     @GetMapping("/posts")
     public String postsIndex(Model model) {
         model.addAttribute("posts", postRepo.findAll());
-        return "/posts/index";
+        return "posts/index";
     }
 
     @GetMapping("/posts/{id}")
     public String postsId(@PathVariable long id,  Model model) {
         model.addAttribute("post", postRepo.findOne(id));
-        return "/posts/show";
+        return "posts/show";
     }
 
     @GetMapping("/posts/create")
@@ -55,7 +55,7 @@ public class PostController {
     public String edit(@ModelAttribute Post post, @PathVariable long id, Model model){
         post.setId(id);
         model.addAttribute("post", postRepo.findOne(id));
-        return "/posts/edit";
+        return "posts/edit";
     }
 
     @PostMapping("/posts/{id}/edit")

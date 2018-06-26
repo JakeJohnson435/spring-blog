@@ -20,31 +20,34 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/posts/create">Create a Post</a>
                 </li>
-                <!--<li class="nav-item dropdown">-->
-                    <!--<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-                        <!--Dropdown-->
-                    <!--</a>-->
-                    <!--<div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
-                        <!--<a class="dropdown-item" href="#">Action</a>-->
-                        <!--<a class="dropdown-item" href="#">Another action</a>-->
-                        <!--<div class="dropdown-divider"></div>-->
-                        <!--<a class="dropdown-item" href="#">Something else here</a>-->
-                    <!--</div>-->
-                <!--</li>-->
-                <!--<li class="nav-item">-->
-                    <!--<a class="nav-link disabled" href="#">Disabled</a>-->
-                <!--</li>-->
             </ul>
-            <nav>
-                <ul>
-                    <!-- More links here... -->
-                    <li>
-                        <form th:action="@{/logout}" th:method="post">
-                            <button class="btn-link btn" style="margin-top: 8px">Logout</button>
-                        </form>
-                    </li>
-                </ul>
-            </nav>
+            <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="login btn btn-outline-secondary dropdown-toggle">Login <span class="caret"></span></button>
+            <ul class="dropdown-menu dropdown-menu-right mt-2">
+                <li class="px-3 py-2">
+                    <form th:action="@{/login}" method="post">
+                        <div class="form-group">
+                            <input id="username" name="username" placeholder="Username" class="form-control form-control-sm" type="text" required="" />
+                        </div>
+                        <div class="form-group">
+                            <input id="password" name="password" placeholder="Password" class="form-control form-control-sm" type="password" required="" />
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block">Login</button>
+                        </div>
+                    </form>
+                    <button class="btn btn-primary btn-block sign"><a href="/users/sign-up">Sign Up!</a></button>
+                </li>
+            </ul>
+            <!--<nav>-->
+                <!--<ul>-->
+                    <!--&lt;!&ndash; More links here... &ndash;&gt;-->
+                    <!--<li>-->
+                        <!--<form th:action="@{/logout}" th:method="post">-->
+                            <!--<button class="btn-link btn" style="margin-top: 8px">Logout</button>-->
+                        <!--</form>-->
+                    <!--</li>-->
+                <!--</ul>-->
+            <!--</nav>-->
             <!--<form class="form-inline my-2 my-lg-0">-->
                 <!--<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />-->
                 <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->

@@ -5,3 +5,24 @@
 .jumbotron {
     margin-bottom: 0;
 }
+
+.slide {
+    background-image: url("img/IMG_5096.JPG");
+    background-size: auto;
+}
+
+.frame {
+    height: 400px;
+    width: auto;
+    background-image: url("img/IMG_5096.JPG");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.login {
+    float: right;
+}
+
+.sign a{
+    color: #FFF;
+}
