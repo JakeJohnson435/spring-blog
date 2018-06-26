@@ -13,7 +13,7 @@
 
 .frame {
     height: 400px;
-    width: auto;
+    width: 100%;
     background-image: url("img/IMG_5096.JPG");
     background-size: contain;
     background-repeat: no-repeat;
