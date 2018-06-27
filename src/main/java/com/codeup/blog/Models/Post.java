@@ -1,5 +1,7 @@
 package com.codeup.blog.Models;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import java.util.regex.Pattern;
 
